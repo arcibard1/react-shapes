@@ -15,7 +15,7 @@
           const [shapes, setShapes] = React.useState([]);
         
           const randomColor = () => {
-            const getByte = () => 100 + Math.round(Math.random() * 155); // Ensures that RGB values are at least 100 apart
+            const getByte = () => 100 + Math.round(Math.random() * 155);
             return `rgba(${getByte()}, ${getByte()}, ${getByte()}, 1)`;
           }
         
@@ -41,7 +41,7 @@
           );
         }
         
-        ReactDOM.render(<App />, document.getElementById('root'));
+        ReactDOM.render(<App />, document.querySelector("#root"));
         
         </script>
         
