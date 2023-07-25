@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Circles & Squares</title>
+</head>
+<body>
+    <section id="root"></section>
+
+    <script type="text/babel">
+
+        function App() {
+          const [shapes, setShapes] = React.useState([]);
+        
+          const randomColor = () => {
+            const getByte = () => 100 + Math.round(Math.random() * 155); // Ensures that RGB values are at least 100 apart
+            return `rgba(${getByte()}, ${getByte()}, ${getByte()}, 1)`;
+          }
+        
+          const generateShapes = () => {
+            const colors = [randomColor(), randomColor(), randomColor()];
+            const newShapes = colors.map((color, index) => (
+              <React.Fragment key={index}>
+                <div style={{backgroundColor: color, width: '100px', height: '100px', borderRadius: '50%', margin: '10px'}} onClick={generateShapes}></div>
+                <div style={{backgroundColor: color, width: '100px', height: '100px', margin: '10px'}} onClick={generateShapes}></div>
+              </React.Fragment>
+            ));
+            setShapes(newShapes);
+          };
+        
+          React.useEffect(() => {
+            generateShapes();
+          }, []);
+        
+          return (
+            <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+              {shapes}
+            </div>
+          );
+        }
+        
+        ReactDOM.render(<App />, document.getElementById('root'));
+        
+        </script>
+        
+        
+</body>
+</html>
